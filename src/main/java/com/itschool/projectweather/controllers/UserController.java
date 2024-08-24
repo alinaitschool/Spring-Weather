@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
-    @GetMapping("api/users")
+    @GetMapping("/api/users")
     public ResponseEntity<List<User>> getUsers(){
         return ResponseEntity.ok(userService.getUsers());
     }

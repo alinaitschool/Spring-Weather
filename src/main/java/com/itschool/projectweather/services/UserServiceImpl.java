@@ -10,11 +10,12 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private List<User> users = new ArrayList<>();
+
     @Override
     public User createUser(User user) {
-        if(user.getEmail().length()<3){
+        if (user.getEmail().length() < 3) {
             throw new RuntimeException("Invalid email address.");
         }
         user.setId(UUID.randomUUID());
