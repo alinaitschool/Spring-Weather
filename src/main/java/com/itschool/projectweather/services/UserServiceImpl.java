@@ -25,12 +25,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(List<User> user) {
-        return null;
+    public User getUser(User user) {
+        return users.stream().filter(u-> u.getId()== user.getId()).findFirst().get();
     }
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return users;
     }
 }

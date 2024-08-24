@@ -8,7 +8,7 @@ public interface UserService {
 
     User createUser(User user);
 
-    User getUser(List<User> user);
+    User getUser(User user);
 
     List<User> getUsers();
 }
