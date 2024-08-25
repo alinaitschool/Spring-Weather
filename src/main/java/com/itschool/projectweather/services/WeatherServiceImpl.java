@@ -38,9 +38,8 @@ public class WeatherServiceImpl implements WeatherService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         LocalDateTime localDateTime = LocalDateTime.parse(jsonNode.get("current").get("last_updated").asText(), formatter);
-
-        Weather weatherResponse = buildWeatherResponse(jsonNode, localDateTime);
         log.info(responseBody);
+        Weather weatherResponse = buildWeatherResponse(jsonNode, localDateTime);
         return weatherResponse;
     }
 
@@ -48,6 +47,7 @@ public class WeatherServiceImpl implements WeatherService {
     private static Weather buildWeatherResponse(JsonNode jsonNode, LocalDateTime localDateTime) {
         Weather weatherResponse = new Weather();
         weatherResponse.setCity(jsonNode.get("location").get("name").asText());
+        weatherResponse.setTemp(jsonNode.get("current").get("temp_c").asDouble());
         weatherResponse.setDescription(jsonNode.get("current").get("condition").get("text").asText());
         weatherResponse.setLastUpdated(localDateTime);
         return weatherResponse;

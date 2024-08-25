@@ -8,5 +8,6 @@ public class Weather {
     private String city;
     private String description;
     private LocalDateTime lastUpdated;
+    private Double temp;
 
 }
