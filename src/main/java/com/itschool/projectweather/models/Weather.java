@@ -1,9 +1,12 @@
 package com.itschool.projectweather.models;
 
-import java.time.LocalDateTime;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+@Data
 public class Weather {
     private String city;
     private String description;
     private LocalDateTime lastUpdated;
+
 }
