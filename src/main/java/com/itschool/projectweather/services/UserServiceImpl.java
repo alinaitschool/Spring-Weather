@@ -1,6 +1,6 @@
 package com.itschool.projectweather.services;
 
-import com.itschool.projectweather.models.User;
+import com.itschool.projectweather.models.entities.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

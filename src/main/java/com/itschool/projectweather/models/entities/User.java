@@ -1,4 +1,4 @@
-package com.itschool.projectweather.models;
+package com.itschool.projectweather.models.entities;
 
 import lombok.Data;
 

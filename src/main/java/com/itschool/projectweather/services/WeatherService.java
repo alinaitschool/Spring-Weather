@@ -1,6 +1,6 @@
 package com.itschool.projectweather.services;
 
-import com.itschool.projectweather.models.Weather;
+import com.itschool.projectweather.models.entities.Weather;
 
 import java.io.IOException;
 

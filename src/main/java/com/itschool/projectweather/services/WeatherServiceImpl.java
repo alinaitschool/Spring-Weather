@@ -2,7 +2,7 @@ package com.itschool.projectweather.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itschool.projectweather.models.Weather;
+import com.itschool.projectweather.models.entities.Weather;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
