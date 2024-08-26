@@ -25,12 +25,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(User user) {
-        return users.stream().filter(u-> u.getId()== user.getId()).findFirst().get();
+    public User getUser(UUID id) {
+        return users.stream().filter(u-> u.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
     public List<User> getUsers() {
         return users;
+    }
+
+    @Override
+    public void deleteUser(UUID id) {
+        User deleteUser = users.stream().filter(user->user.getId().equals(id)).findFirst().orElse(null);
+        users.remove(deleteUser);
     }
 }
