@@ -1,42 +1,45 @@
 package com.itschool.projectweather.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itschool.projectweather.models.dtos.UserDTO;
 import com.itschool.projectweather.models.entities.User;
+import com.itschool.projectweather.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-    private List<User> users = new ArrayList<>();
+    private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
 
-    @Override
-    public User createUser(User user) {
-        if (user.getEmail().length() < 3) {
-            throw new RuntimeException("Invalid email address.");
-        }
-        user.setId(UUID.randomUUID());
-        users.add(user);
-        log.info("User was saved!", user.getId());
-        return user;
+    public UserServiceImpl(UserRepository userRepository, ObjectMapper objectMapper) {
+        this.userRepository = userRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
     public User getUser(UUID id) {
-        return users.stream().filter(u-> u.getId().equals(id)).findFirst().orElse(null);
+        return null;
     }
 
     @Override
-    public List<User> getUsers() {
-        return users;
+    public List<UserDTO> getUsers() {
+        return null;
     }
 
     @Override
     public void deleteUser(UUID id) {
-        User deleteUser = users.stream().filter(user->user.getId().equals(id)).findFirst().orElse(null);
-        users.remove(deleteUser);
+
+    }
+
+    @Override
+    public UserDTO createUserDTO(User userDTO) {
+        User userEntityToBeSaved = objectMapper.convertValue(userDTO, User.class);
+        User userResposeEntity = userRepository.save(userEntityToBeSaved);
+        return objectMapper.convertValue(userResposeEntity, UserDTO.class);
     }
 }

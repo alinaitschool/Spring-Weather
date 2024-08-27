@@ -1,5 +1,6 @@
 package com.itschool.projectweather.controllers;
 
+import com.itschool.projectweather.models.dtos.UserDTO;
 import com.itschool.projectweather.models.entities.User;
 import com.itschool.projectweather.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,11 @@ public class UserController {
     }
 
     @PostMapping("/api/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+    public ResponseEntity<UserDTO> createUser(@RequestBody User userDTO) {
+        return ResponseEntity.ok(userService.createUserDTO(userDTO));
     }
     @GetMapping("/api/users")
-    public ResponseEntity<List<User>> getUsers(){
+    public ResponseEntity<List<UserDTO>> getUsers(){
         return ResponseEntity.ok(userService.getUsers());
     }
 
