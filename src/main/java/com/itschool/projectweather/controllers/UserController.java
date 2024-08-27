@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/api/users")
-    public ResponseEntity<UserDTO> createUser(@RequestBody User userDTO) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.createUserDTO(userDTO));
     }
     @GetMapping("/api/users")
@@ -32,12 +32,12 @@ public class UserController {
     }
 
     @DeleteMapping("/api/users/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable UUID id){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted");
     }
     @GetMapping("api/users/{id}")
-    public ResponseEntity<User> findUser(@PathVariable UUID id){
+    public ResponseEntity<User> findUser(@PathVariable Long id){
         return ResponseEntity.ok(userService.getUser(id));
     }
 
