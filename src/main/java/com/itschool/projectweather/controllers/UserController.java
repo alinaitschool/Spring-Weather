@@ -26,18 +26,20 @@ public class UserController {
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.createUserDTO(userDTO));
     }
+
     @GetMapping("/api/users")
-    public ResponseEntity<List<UserDTO>> getUsers(){
+    public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
 
     @DeleteMapping("/api/users/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted");
     }
+
     @GetMapping("api/users/{id}")
-    public ResponseEntity<User> findUser(@PathVariable Long id){
+    public ResponseEntity<UserDTO> findUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUser(id));
     }
 

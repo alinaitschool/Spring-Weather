@@ -22,27 +22,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(Long id) {
-        return null;
+    public UserDTO getUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        return objectMapper.convertValue(user, UserDTO.class);
     }
 
     @Override
     public List<UserDTO> getUsers() {
-        List<User>  users= userRepository.findAll();
-        List<UserDTO> userEntityConverted = users.stream().map(user ->objectMapper.convertValue(user, UserDTO.class)).toList();
+        List<User> users = userRepository.findAll();
+        List<UserDTO> userEntityConverted = users.stream().map(user -> objectMapper.convertValue(user, UserDTO.class)).toList();
         return userEntityConverted;
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO){
+    public UserDTO updateUser(UserDTO userDTO) {
         User userEntityToBeSaved = objectMapper.convertValue(userDTO, User.class);
-         userRepository.save(userEntityToBeSaved);
+        userRepository.save(userEntityToBeSaved);
         return userDTO;
     }
 
     @Override
     public void deleteUser(Long id) {
-     userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override

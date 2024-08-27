@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+
 @RestController
 public class WeatherController {
     private WeatherService weatherService;
@@ -18,6 +19,6 @@ public class WeatherController {
 
     @GetMapping("/api/weather")
     public ResponseEntity<Weather> getWeather(@RequestParam String city) throws IOException {
-     return ResponseEntity.ok(weatherService.getCityWeather(city));
+        return ResponseEntity.ok(weatherService.getCityWeather(city));
     }
 }
