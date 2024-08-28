@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -22,7 +21,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUser(Long id) {
+    public UserDTO createUser(UserDTO userDTO) {
+        User userEntityToBeSaved = objectMapper.convertValue(userDTO, User.class);
+        User userResposeEntity = userRepository.save(userEntityToBeSaved);
+        return objectMapper.convertValue(userResposeEntity, UserDTO.class);
+    }
+
+    @Override
+    public UserDTO getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow();
         return objectMapper.convertValue(user, UserDTO.class);
     }
@@ -35,21 +41,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO) {
-        User userEntityToBeSaved = objectMapper.convertValue(userDTO, User.class);
-        userRepository.save(userEntityToBeSaved);
-        return userDTO;
-    }
-
-    @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public UserDTO createUserDTO(UserDTO userDTO) {
+    public UserDTO updateUser(UserDTO userDTO) {
         User userEntityToBeSaved = objectMapper.convertValue(userDTO, User.class);
-        User userResposeEntity = userRepository.save(userEntityToBeSaved);
-        return objectMapper.convertValue(userResposeEntity, UserDTO.class);
+        userRepository.save(userEntityToBeSaved);
+        return userDTO;
     }
 }

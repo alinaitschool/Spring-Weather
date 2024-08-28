@@ -1,4 +1,4 @@
-package com.itschool.projectweather.controllers;
+package com.itschool.projectweather.exceptions;
 
 import java.util.UUID;
 
